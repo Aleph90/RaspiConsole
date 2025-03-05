@@ -1,16 +1,24 @@
+/*!
+ * Tools for mapping GPIO pins to key codes (as defined in the linux library).
+ * In accordance with the terminology of `libgpiod`, GPIO pins are called
+ * "lines" instead. The map is expressed as an array of pin-key pairs,
+ * implemented as a `lineKeyPair` structure. The total number of pairs is
+ * pre-#define'd in the `NUM_LINES` macro.
+ */
+
 #include <linux/input-event-codes.h>
 
+// Number of GPIO pins/keys used. Edit to match your layout.
 #define NUM_LINES 15
 
-// Temporary key map: the sepcific arrangement of
-// action/directional buttons may be changed later.
-
+// Simple struct to hold a GPIO pin number (line) and a key code.
 struct lineKeyPair  {
     unsigned int line;
     unsigned int key_code;
 };
 
-struct lineKeyPair line2key[NUM_LINES]   =   {
+// Pin-key map. Edit to match your layout.
+struct lineKeyPair line2key_dict[NUM_LINES]   =   {
     {02,    BTN_WEST},          // Action Pad
     {03,    BTN_SOUTH},         // Action Pad
     {04,    BTN_EAST},          // Action Pad
